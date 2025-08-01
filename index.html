@@ -968,12 +968,7 @@
         console.log('🚀 Roblox Lua Cheatsheet loaded! Click any code block to copy it.');
     </script>
 </body>
-</html>Heartbeat</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>)
-    <span class="comment">-- Runs every frame (server & client)</span>
-<span class="keyword">end</span>)
+<span class="variable">RunService</span>.<span class="function">Heartbeat</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>) <span class="comment">-- every frame</span> <span class="keyword">end</span>)
+<br>
+<span class="variable">RunService</span>.<span class="function">RenderStepped</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>) <span class="comment">-- before render</span> <span class="keyword">end</span>)
 
-<span class="variable">RunService</span>.<span class="variable">RenderStepped</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>)
-    <span class="comment">-- Runs before rendering (client only)</span>
-<span class="keyword">end</span>)
-
-<span class="variable">RunService</span>.<span class="variable
