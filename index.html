@@ -3,123 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Roblox Lua Cheatsheet</title>
+    <title>Ultimate Roblox Lua Cheatsheet</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            background: linear-gradient(135deg, #1e1e2e 0%, #2d3748 100%);
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #e2e8f0;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .header p { font-size: 1.1rem; opacity: 0.8; }
+        
         .nav {
             position: sticky;
-            top: 0;
-            background: rgba(30, 30, 46, 0.95);
-            backdrop-filter: blur(10px);
+            top: 10px;
+            background: rgba(20, 30, 60, 0.95);
+            backdrop-filter: blur(15px);
             padding: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-radius: 15px;
             border: 1px solid rgba(102, 126, 234, 0.3);
             z-index: 100;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
         
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
+            gap: 8px;
         }
         
         .nav-item {
             padding: 8px 12px;
-            background: rgba(102, 126, 234, 0.2);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
             border-radius: 8px;
             text-decoration: none;
             color: #cbd5e1;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s ease;
             text-align: center;
             border: 1px solid transparent;
         }
         
         .nav-item:hover {
-            background: rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
             border-color: rgba(102, 126, 234, 0.6);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
         
         .section {
-            margin-bottom: 40px;
-            background: rgba(45, 55, 72, 0.6);
+            margin-bottom: 30px;
+            background: rgba(30, 40, 70, 0.7);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             border: 1px solid rgba(102, 126, 234, 0.2);
             backdrop-filter: blur(5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .section h2 {
             color: #667eea;
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: 15px;
+            font-size: 20px;
             border-bottom: 2px solid rgba(102, 126, 234, 0.3);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
         
         .section h3 {
             color: #94a3b8;
-            margin: 20px 0 10px 0;
-            font-size: 18px;
+            margin: 15px 0 8px 0;
+            font-size: 16px;
         }
         
         .code-block {
-            background: rgba(15, 23, 42, 0.8);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 30, 60, 0.9));
             border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
             overflow-x: auto;
+            font-size: 13px;
             position: relative;
         }
         
         .code-block::before {
             content: 'lua';
             position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 10px;
+            top: 4px;
+            right: 8px;
+            font-size: 9px;
             color: rgba(148, 163, 184, 0.5);
             text-transform: uppercase;
         }
         
-        pre {
-            margin: 0;
-            white-space: pre-wrap;
-            font-family: inherit;
-        }
+        pre { margin: 0; white-space: pre-wrap; font-family: inherit; }
         
-        .keyword { color: #c792ea; }
+        .keyword { color: #c792ea; font-weight: 600; }
         .string { color: #c3e88d; }
         .comment { color: #546e7a; font-style: italic; }
         .number { color: #f78c6c; }
@@ -128,38 +127,44 @@
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
         }
         
         .card {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(20, 30, 50, 0.8);
             border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 10px;
-            padding: 15px;
+            padding: 12px;
         }
         
         .card h4 {
             color: #94a3b8;
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .tip, .warning, .info {
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-size: 13px;
         }
         
         .tip {
             background: rgba(34, 197, 94, 0.1);
             border-left: 4px solid #22c55e;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 10px 10px 0;
         }
         
         .warning {
             background: rgba(239, 68, 68, 0.1);
             border-left: 4px solid #ef4444;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 10px 10px 0;
+        }
+        
+        .info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
         }
         
         .scroll-top {
@@ -170,43 +175,35 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 1000;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
         
-        .scroll-top.visible {
-            opacity: 1;
-        }
+        .scroll-top.visible { opacity: 1; }
+        .scroll-top:hover { transform: scale(1.1); }
         
-        .scroll-top:hover {
-            transform: scale(1.1);
-        }
+        .compact { font-size: 12px; }
+        .compact .code-block { padding: 8px; }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .nav-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 10px; }
+            .nav-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); }
+            .grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Complete Roblox Lua Cheatsheet</h1>
-            <p>Everything you need to master Roblox scripting</p>
+            <h1>🚀 Ultimate Roblox Lua Cheatsheet</h1>
+            <p>Complete reference for Roblox scripting mastery</p>
         </div>
         
         <nav class="nav">
@@ -218,118 +215,82 @@
                 <a href="#events" class="nav-item">Events</a>
                 <a href="#remotes" class="nav-item">Remotes</a>
                 <a href="#math" class="nav-item">Math</a>
-                <a href="#raycasting" class="nav-item">Raycasting</a>
                 <a href="#tweening" class="nav-item">Tweening</a>
-                <a href="#oop" class="nav-item">OOP</a>
-                <a href="#metatables" class="nav-item">Metatables</a>
+                <a href="#gui" class="nav-item">GUI</a>
+                <a href="#datastores" class="nav-item">DataStores</a>
+                <a href="#physics" class="nav-item">Physics</a>
+                <a href="#audio" class="nav-item">Audio</a>
                 <a href="#advanced" class="nav-item">Advanced</a>
-                <a href="#patterns" class="nav-item">Patterns</a>
-                <a href="#optimization" class="nav-item">Optimization</a>
+                <a href="#debugging" class="nav-item">Debug</a>
+                <a href="#optimization" class="nav-item">Optimize</a>
             </div>
         </nav>
 
         <section id="basics" class="section">
-            <h2>🎯 Lua Basics</h2>
+            <h2>🎯 Lua Essentials</h2>
             
-            <h3>Variables & Types</h3>
-            <div class="code-block">
-                <pre><span class="keyword">local</span> <span class="variable">str</span> = <span class="string">"Hello World"</span>
+            <div class="grid">
+                <div class="card">
+                    <h4>Variables & Types</h4>
+                    <div class="code-block compact">
+                        <pre><span class="keyword">local</span> <span class="variable">str</span> = <span class="string">"Hello"</span>
 <span class="keyword">local</span> <span class="variable">num</span> = <span class="number">42</span>
 <span class="keyword">local</span> <span class="variable">bool</span> = <span class="keyword">true</span>
 <span class="keyword">local</span> <span class="variable">arr</span> = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}
-<span class="keyword">local</span> <span class="variable">dict</span> = {<span class="variable">key</span> = <span class="string">"value"</span>, <span class="variable">x</span> = <span class="number">10</span>}
-<span class="keyword">local</span> <span class="variable">nothing</span> = <span class="keyword">nil</span></pre>
-            </div>
-
-            <div class="grid">
+<span class="keyword">local</span> <span class="variable">dict</span> = {<span class="variable">x</span> = <span class="number">10</span>, <span class="variable">y</span> = <span class="number">20</span>}</pre>
+                    </div>
+                </div>
+                
                 <div class="card">
                     <h4>Functions</h4>
-                    <div class="code-block">
+                    <div class="code-block compact">
                         <pre><span class="keyword">local function</span> <span class="function">add</span>(<span class="variable">a</span>, <span class="variable">b</span>)
     <span class="keyword">return</span> <span class="variable">a</span> + <span class="variable">b</span>
 <span class="keyword">end</span>
 
-<span class="comment">-- Anonymous function</span>
-<span class="keyword">local</span> <span class="variable">multiply</span> = <span class="keyword">function</span>(<span class="variable">x</span>, <span class="variable">y</span>)
-    <span class="keyword">return</span> <span class="variable">x</span> * <span class="variable">y</span>
-<span class="keyword">end</span>
-
-<span class="comment">-- Variable arguments</span>
+<span class="comment">-- Variable args</span>
 <span class="keyword">local function</span> <span class="function">sum</span>(...)
-    <span class="keyword">local</span> <span class="variable">args</span> = {...}
     <span class="keyword">local</span> <span class="variable">total</span> = <span class="number">0</span>
-    <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">args</span>) <span class="keyword">do</span>
+    <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>({...}) <span class="keyword">do</span>
         <span class="variable">total</span> = <span class="variable">total</span> + <span class="variable">v</span>
     <span class="keyword">end</span>
     <span class="keyword">return</span> <span class="variable">total</span>
 <span class="keyword">end</span></pre>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <h4>Control Flow</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- If statements</span>
+            </div>
+
+            <h3>Control Flow & Loops</h3>
+            <div class="code-block">
+                <pre><span class="comment">-- Conditionals</span>
 <span class="keyword">if</span> <span class="variable">condition</span> <span class="keyword">then</span>
-    <span class="comment">-- do something</span>
-<span class="keyword">elseif</span> <span class="variable">otherCondition</span> <span class="keyword">then</span>
-    <span class="comment">-- do something else</span>
+    <span class="comment">-- code</span>
+<span class="keyword">elseif</span> <span class="variable">other</span> <span class="keyword">then</span>
+    <span class="comment">-- code</span>
 <span class="keyword">else</span>
     <span class="comment">-- fallback</span>
 <span class="keyword">end</span>
 
 <span class="comment">-- Ternary-like</span>
-<span class="keyword">local</span> <span class="variable">result</span> = <span class="variable">condition</span> <span class="keyword">and</span> <span class="string">"true"</span> <span class="keyword">or</span> <span class="string">"false"</span>
+<span class="keyword">local</span> <span class="variable">result</span> = <span class="variable">condition</span> <span class="keyword">and</span> <span class="string">"yes"</span> <span class="keyword">or</span> <span class="string">"no"</span>
 
-<span class="comment">-- Switch-like using tables</span>
-<span class="keyword">local</span> <span class="variable">actions</span> = {
-    [<span class="string">"jump"</span>] = <span class="keyword">function</span>() <span class="function">print</span>(<span class="string">"Jumping!"</span>) <span class="keyword">end</span>,
-    [<span class="string">"run"</span>] = <span class="keyword">function</span>() <span class="function">print</span>(<span class="string">"Running!"</span>) <span class="keyword">end</span>
-}
-<span class="variable">actions</span>[<span class="variable">input</span>]()</pre>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Loops</h3>
-            <div class="code-block">
-                <pre><span class="comment">-- Numeric for loop</span>
-<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span> <span class="keyword">do</span> <span class="comment">-- start, end, step</span>
-    <span class="function">print</span>(<span class="variable">i</span>) <span class="comment">-- prints 1, 3, 5, 7, 9</span>
-<span class="keyword">end</span>
-
-<span class="comment">-- Generic for loop (pairs)</span>
-<span class="keyword">for</span> <span class="variable">key</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">table</span>) <span class="keyword">do</span>
-    <span class="function">print</span>(<span class="variable">key</span>, <span class="variable">value</span>)
-<span class="keyword">end</span>
-
-<span class="comment">-- Array iteration (ipairs)</span>
-<span class="keyword">for</span> <span class="variable">index</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="function">ipairs</span>(<span class="variable">array</span>) <span class="keyword">do</span>
-    <span class="function">print</span>(<span class="variable">index</span>, <span class="variable">value</span>)
-<span class="keyword">end</span>
-
-<span class="comment">-- While loop</span>
-<span class="keyword">while</span> <span class="variable">condition</span> <span class="keyword">do</span>
-    <span class="comment">-- code</span>
-<span class="keyword">end</span>
-
-<span class="comment">-- Repeat until</span>
-<span class="keyword">repeat</span>
-    <span class="comment">-- code</span>
-<span class="keyword">until</span> <span class="variable">condition</span></pre>
+<span class="comment">-- Loops</span>
+<span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">10</span> <span class="keyword">do</span> <span class="function">print</span>(<span class="variable">i</span>) <span class="keyword">end</span>
+<span class="keyword">for</span> <span class="variable">k</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">table</span>) <span class="keyword">do</span> <span class="function">print</span>(<span class="variable">k</span>, <span class="variable">v</span>) <span class="keyword">end</span>
+<span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">ipairs</span>(<span class="variable">array</span>) <span class="keyword">do</span> <span class="function">print</span>(<span class="variable">i</span>, <span class="variable">v</span>) <span class="keyword">end</span>
+<span class="keyword">while</span> <span class="variable">condition</span> <span class="keyword">do</span> <span class="comment">-- code</span> <span class="keyword">end</span></pre>
             </div>
         </section>
 
         <section id="services" class="section">
-            <h2>🛠️ Roblox Services</h2>
+            <h2>🛠️ Core Services</h2>
             <div class="code-block">
-                <pre><span class="comment">-- Essential Services</span>
+                <pre><span class="comment">-- Essential services</span>
 <span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
 <span class="keyword">local</span> <span class="variable">RunService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"RunService"</span>)
 <span class="keyword">local</span> <span class="variable">UserInputService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"UserInputService"</span>)
 <span class="keyword">local</span> <span class="variable">TweenService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"TweenService"</span>)
 <span class="keyword">local</span> <span class="variable">ReplicatedStorage</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"ReplicatedStorage"</span>)
-<span class="keyword">local</span> <span class="variable">StarterPlayer</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"StarterPlayer"</span>)
 <span class="keyword">local</span> <span class="variable">Lighting</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Lighting"</span>)
 <span class="keyword">local</span> <span class="variable">SoundService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"SoundService"</span>)
 <span class="keyword">local</span> <span class="variable">Debris</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Debris"</span>)
@@ -338,103 +299,108 @@
 <span class="keyword">local</span> <span class="variable">PathfindingService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"PathfindingService"</span>)
 <span class="keyword">local</span> <span class="variable">CollectionService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"CollectionService"</span>)
 <span class="keyword">local</span> <span class="variable">ContextActionService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"ContextActionService"</span>)
-<span class="keyword">local</span> <span class="variable">MarketplaceService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"MarketplaceService"</span>)</pre>
+<span class="keyword">local</span> <span class="variable">MarketplaceService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"MarketplaceService"</span>)
+<span class="keyword">local</span> <span class="variable">StarterGui</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"StarterGui"</span>)</pre>
             </div>
         </section>
 
         <section id="players" class="section">
             <h2>👥 Players & Characters</h2>
-            <div class="code-block">
-                <pre><span class="keyword">local</span> <span class="variable">Players</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"Players"</span>)
-
-<span class="comment">-- Get local player (LocalScript only)</span>
-<span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">Players</span>.<span class="variable">LocalPlayer</span>
-
-<span class="comment">-- Get character safely</span>
+            <div class="grid">
+                <div class="card">
+                    <h4>Player Basics</h4>
+                    <div class="code-block compact">
+                        <pre><span class="keyword">local</span> <span class="variable">player</span> = <span class="variable">Players</span>.<span class="variable">LocalPlayer</span>
 <span class="keyword">local</span> <span class="variable">character</span> = <span class="variable">player</span>.<span class="variable">Character</span> <span class="keyword">or</span> <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Wait</span>()
 <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
-<span class="keyword">local</span> <span class="variable">rootPart</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"HumanoidRootPart"</span>)
-
-<span class="comment">-- Player events</span>
-<span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">player</span>)
-    <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> .. <span class="string">" joined!"</span>)
-    
-    <span class="comment">-- Character spawned</span>
-    <span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">character</span>)
-        <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
-        
-        <span class="comment">-- Player died</span>
-        <span class="variable">humanoid</span>.<span class="variable">Died</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
-            <span class="function">print</span>(<span class="variable">player</span>.<span class="variable">Name</span> .. <span class="string">" died!"</span>)
-        <span class="keyword">end</span>)
-    <span class="keyword">end</span>)
+<span class="keyword">local</span> <span class="variable">rootPart</span> = <span class="variable">character</span>:<span class="function">WaitForChild</span>(<span class="string">"HumanoidRootPart"</span>)</pre>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Player Events</h4>
+                    <div class="code-block compact">
+                        <pre><span class="variable">Players</span>.<span class="variable">PlayerAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">plr</span>)
+    <span class="function">print</span>(<span class="variable">plr</span>.<span class="variable">Name</span> .. <span class="string">" joined"</span>)
 <span class="keyword">end</span>)
 
-<span class="comment">-- Humanoid manipulation</span>
-<span class="variable">humanoid</span>.<span class="variable">WalkSpeed</span> = <span class="number">50</span>
-<span class="variable">humanoid</span>.<span class="variable">JumpPower</span> = <span class="number">100</span>
-<span class="variable">humanoid</span>.<span class="variable">Health</span> = <span class="number">0</span> <span class="comment">-- Kill player</span></pre>
+<span class="variable">player</span>.<span class="variable">CharacterAdded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">char</span>)
+    <span class="keyword">local</span> <span class="variable">hum</span> = <span class="variable">char</span>:<span class="function">WaitForChild</span>(<span class="string">"Humanoid"</span>)
+    <span class="variable">hum</span>.<span class="variable">Died</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
+        <span class="function">print</span>(<span class="string">"Player died"</span>)
+    <span class="keyword">end</span>)
+<span class="keyword">end</span>)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Humanoid Properties</h3>
+            <div class="code-block">
+                <pre><span class="variable">humanoid</span>.<span class="variable">WalkSpeed</span> = <span class="number">50</span>         <span class="comment">-- Speed (default 16)</span>
+<span class="variable">humanoid</span>.<span class="variable">JumpPower</span> = <span class="number">100</span>        <span class="comment">-- Jump height (default 50)</span>
+<span class="variable">humanoid</span>.<span class="variable">MaxHealth</span> = <span class="number">200</span>        <span class="comment">-- Max health</span>
+<span class="variable">humanoid</span>.<span class="variable">Health</span> = <span class="number">100</span>           <span class="comment">-- Current health</span>
+<span class="variable">humanoid</span>.<span class="variable">PlatformStand</span> = <span class="keyword">true</span>    <span class="comment">-- Disable movement</span>
+<span class="variable">humanoid</span>.<span class="variable">Sit</span> = <span class="keyword">true</span>              <span class="comment">-- Make player sit</span>
+<span class="variable">humanoid</span>:<span class="function">LoadAnimation</span>(<span class="variable">anim</span>)      <span class="comment">-- Play animation</span></pre>
             </div>
         </section>
 
         <section id="parts" class="section">
             <h2>🧱 Parts & Objects</h2>
-            
             <div class="grid">
                 <div class="card">
-                    <h4>Creating & Modifying Parts</h4>
-                    <div class="code-block">
+                    <h4>Creating Parts</h4>
+                    <div class="code-block compact">
                         <pre><span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"Part"</span>)
 <span class="variable">part</span>.<span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)
 <span class="variable">part</span>.<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
 <span class="variable">part</span>.<span class="variable">BrickColor</span> = <span class="variable">BrickColor</span>.<span class="keyword">new</span>(<span class="string">"Bright red"</span>)
 <span class="variable">part</span>.<span class="variable">Material</span> = <span class="variable">Enum</span>.<span class="variable">Material</span>.<span class="variable">Neon</span>
 <span class="variable">part</span>.<span class="variable">Anchored</span> = <span class="keyword">true</span>
-<span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>
-<span class="variable">part</span>.<span class="variable">Transparency</span> = <span class="number">0.5</span>
 <span class="variable">part</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span></pre>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h4>Finding Objects</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- Find child</span>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- Find methods</span>
 <span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">workspace</span>:<span class="function">FindFirstChild</span>(<span class="string">"PartName"</span>)
+<span class="keyword">local</span> <span class="variable">part2</span> = <span class="variable">workspace</span>:<span class="function">WaitForChild</span>(<span class="string">"PartName"</span>)
+<span class="keyword">local</span> <span class="variable">model</span> = <span class="variable">workspace</span>:<span class="function">FindFirstChildOfClass</span>(<span class="string">"Model"</span>)
 
-<span class="comment">-- Wait for child</span>
-<span class="keyword">local</span> <span class="variable">part</span> = <span class="variable">workspace</span>:<span class="function">WaitForChild</span>(<span class="string">"PartName"</span>)
-
-<span class="comment">-- Find by class</span>
-<span class="keyword">local</span> <span class="variable">parts</span> = <span class="variable">workspace</span>:<span class="function">GetChildren</span>()
-<span class="keyword">local</span> <span class="variable">allParts</span> = <span class="variable">workspace</span>:<span class="function">GetDescendants</span>()
-
-<span class="comment">-- Filter by class</span>
-<span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">obj</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">allParts</span>) <span class="keyword">do</span>
-    <span class="keyword">if</span> <span class="variable">obj</span>:<span class="function">IsA</span>(<span class="string">"Part"</span>) <span class="keyword">then</span>
-        <span class="function">print</span>(<span class="variable">obj</span>.<span class="variable">Name</span>)
-    <span class="keyword">end</span>
-<span class="keyword">end</span></pre>
+<span class="comment">-- Get collections</span>
+<span class="keyword">local</span> <span class="variable">children</span> = <span class="variable">workspace</span>:<span class="function">GetChildren</span>()
+<span class="keyword">local</span> <span class="variable">descendants</span> = <span class="variable">workspace</span>:<span class="function">GetDescendants</span>()</pre>
                     </div>
                 </div>
+            </div>
+
+            <h3>Part Properties</h3>
+            <div class="code-block">
+                <pre><span class="variable">part</span>.<span class="variable">Transparency</span> = <span class="number">0.5</span>           <span class="comment">-- 0 = opaque, 1 = invisible</span>
+<span class="variable">part</span>.<span class="variable">CanCollide</span> = <span class="keyword">false</span>            <span class="comment">-- Collision detection</span>
+<span class="variable">part</span>.<span class="variable">Shape</span> = <span class="variable">Enum</span>.<span class="variable">PartType</span>.<span class="variable">Ball</span>     <span class="comment">-- Ball, Block, Cylinder</span>
+<span class="variable">part</span>.<span class="variable">TopSurface</span> = <span class="variable">Enum</span>.<span class="variable">SurfaceType</span>.<span class="variable">Smooth</span>
+<span class="variable">part</span>.<span class="variable">Name</span> = <span class="string">"MyPart"</span>              <span class="comment">-- Object name</span>
+<span class="variable">part</span>:<span class="function">Destroy</span>()                   <span class="comment">-- Delete object</span></pre>
             </div>
         </section>
 
         <section id="events" class="section">
-            <h2>⚡ Events & Connections</h2>
-            
+            <h2>⚡ Events & Input</h2>
             <div class="grid">
                 <div class="card">
                     <h4>Touch Events</h4>
-                    <div class="code-block">
+                    <div class="code-block compact">
                         <pre><span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
-    <span class="keyword">local</span> <span class="variable">humanoid</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
-    <span class="keyword">if</span> <span class="variable">humanoid</span> <span class="keyword">then</span>
+    <span class="keyword">local</span> <span class="variable">hum</span> = <span class="variable">hit</span>.<span class="variable">Parent</span>:<span class="function">FindFirstChild</span>(<span class="string">"Humanoid"</span>)
+    <span class="keyword">if</span> <span class="variable">hum</span> <span class="keyword">then</span>
         <span class="function">print</span>(<span class="string">"Player touched!"</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>)
 
-<span class="comment">-- Touch ended</span>
 <span class="variable">part</span>.<span class="variable">TouchEnded</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
     <span class="function">print</span>(<span class="string">"Touch ended"</span>)
 <span class="keyword">end</span>)</pre>
@@ -443,114 +409,87 @@
                 
                 <div class="card">
                     <h4>User Input</h4>
-                    <div class="code-block">
-                        <pre><span class="keyword">local</span> <span class="variable">UIS</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"UserInputService"</span>)
-
-<span class="variable">UIS</span>.<span class="variable">InputBegan</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">input</span>)
+                    <div class="code-block compact">
+                        <pre><span class="variable">UserInputService</span>.<span class="variable">InputBegan</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">input</span>)
     <span class="keyword">if</span> <span class="variable">input</span>.<span class="variable">KeyCode</span> == <span class="variable">Enum</span>.<span class="variable">KeyCode</span>.<span class="variable">E</span> <span class="keyword">then</span>
-        <span class="function">print</span>(<span class="string">"E pressed!"</span>)
+        <span class="function">print</span>(<span class="string">"E pressed"</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>)
 
 <span class="comment">-- Mouse events</span>
-<span class="variable">UIS</span>.<span class="variable">InputChanged</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">input</span>)
-    <span class="keyword">if</span> <span class="variable">input</span>.<span class="variable">UserInputType</span> == <span class="variable">Enum</span>.<span class="variable">UserInputType</span>.<span class="variable">MouseMovement</span> <span class="keyword">then</span>
-        <span class="function">print</span>(<span class="variable">input</span>.<span class="variable">Position</span>)
-    <span class="keyword">end</span>
+<span class="keyword">local</span> <span class="variable">mouse</span> = <span class="variable">player</span>:<span class="function">GetMouse</span>()
+<span class="variable">mouse</span>.<span class="variable">Button1Down</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
+    <span class="function">print</span>(<span class="string">"Left click"</span>)
 <span class="keyword">end</span>)</pre>
                     </div>
                 </div>
             </div>
 
-            <h3>Connection Management</h3>
+            <h3>RunService Events</h3>
             <div class="code-block">
-                <pre><span class="comment">-- Store connection</span>
-<span class="keyword">local</span> <span class="variable">connection</span> = <span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">hit</span>)
-    <span class="function">print</span>(<span class="string">"Touched!"</span>)
-<span class="keyword">end</span>)
-
-<span class="comment">-- Disconnect when done</span>
-<span class="variable">connection</span>:<span class="function">Disconnect</span>()
-
-<span class="comment">-- Multiple connections</span>
-<span class="keyword">local</span> <span class="variable">connections</span> = {}
-<span class="variable">connections</span>[<span class="number">1</span>] = <span class="variable">part</span>.<span class="variable">Touched</span>:<span class="function">Connect</span>(<span class="keyword">function</span>() <span class="keyword">end</span>)
-<span class="variable">connections</span>[<span class="number">2</span>] = <span class="variable">part</span>.<span class="variable">Changed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>() <span class="keyword">end</span>)
-
-<span class="comment">-- Disconnect all</span>
-<span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">conn</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">connections</span>) <span class="keyword">do</span>
-    <span class="variable">conn</span>:<span class="function">Disconnect</span>()
-<span class="keyword">end</span></pre>
+                <pre><span class="comment">-- Game loop events</span>
+<span class="variable">RunService</span>.<span class="variable">Stepped</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">time</span>, <span class="variable">dt</span>)
+    <span class="comment">-- Runs after physics (server & client)</span>
+<span class="keyword">end</span>)</pre>
             </div>
         </section>
 
         <section id="remotes" class="section">
             <h2>📡 Remote Events & Functions</h2>
-            
             <div class="grid">
                 <div class="card">
                     <h4>Remote Events</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- Create RemoteEvent in ReplicatedStorage</span>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- Create in ReplicatedStorage</span>
 <span class="keyword">local</span> <span class="variable">remoteEvent</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"RemoteEvent"</span>)
 <span class="variable">remoteEvent</span>.<span class="variable">Name</span> = <span class="string">"PlayerAction"</span>
 <span class="variable">remoteEvent</span>.<span class="variable">Parent</span> = <span class="variable">ReplicatedStorage</span>
 
-<span class="comment">-- Client to Server</span>
+<span class="comment">-- Client → Server</span>
 <span class="variable">remoteEvent</span>:<span class="function">FireServer</span>(<span class="string">"jump"</span>, <span class="number">10</span>)
 
-<span class="comment">-- Server to Client</span>
-<span class="variable">remoteEvent</span>:<span class="function">FireClient</span>(<span class="variable">player</span>, <span class="string">"damage"</span>, <span class="number">25</span>)
-
-<span class="comment">-- Server to All Clients</span>
-<span class="variable">remoteEvent</span>:<span class="function">FireAllClients</span>(<span class="string">"explosion"</span>, <span class="variable">position</span>)</pre>
+<span class="comment">-- Server → Client</span>
+<span class="variable">remoteEvent</span>:<span class="function">FireClient</span>(<span class="variable">player</span>, <span class="string">"data"</span>)
+<span class="variable">remoteEvent</span>:<span class="function">FireAllClients</span>(<span class="string">"explosion"</span>)</pre>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h4>Remote Functions</h4>
-                    <div class="code-block">
+                    <div class="code-block compact">
                         <pre><span class="comment">-- Create RemoteFunction</span>
-<span class="keyword">local</span> <span class="variable">remoteFunction</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"RemoteFunction"</span>)
-<span class="variable">remoteFunction</span>.<span class="variable">Name</span> = <span class="string">"GetData"</span>
-<span class="variable">remoteFunction</span>.<span class="variable">Parent</span> = <span class="variable">ReplicatedStorage</span>
+<span class="keyword">local</span> <span class="variable">remoteFunc</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"RemoteFunction"</span>)
+<span class="variable">remoteFunc</span>.<span class="variable">Name</span> = <span class="string">"GetData"</span>
+<span class="variable">remoteFunc</span>.<span class="variable">Parent</span> = <span class="variable">ReplicatedStorage</span>
 
 <span class="comment">-- Server function</span>
-<span class="variable">remoteFunction</span>.<span class="variable">OnServerInvoke</span> = <span class="keyword">function</span>(<span class="variable">player</span>, <span class="variable">dataType</span>)
-    <span class="keyword">if</span> <span class="variable">dataType</span> == <span class="string">"coins"</span> <span class="keyword">then</span>
-        <span class="keyword">return</span> <span class="variable">playerData</span>[<span class="variable">player</span>].<span class="variable">coins</span>
-    <span class="keyword">end</span>
-    <span class="keyword">return</span> <span class="keyword">nil</span>
+<span class="variable">remoteFunc</span>.<span class="variable">OnServerInvoke</span> = <span class="keyword">function</span>(<span class="variable">plr</span>, <span class="variable">type</span>)
+    <span class="keyword">return</span> <span class="variable">playerData</span>[<span class="variable">plr</span>][<span class="variable">type</span>]
 <span class="keyword">end</span>
 
 <span class="comment">-- Client invoke</span>
-<span class="keyword">local</span> <span class="variable">coins</span> = <span class="variable">remoteFunction</span>:<span class="function">InvokeServer</span>(<span class="string">"coins"</span>)</pre>
+<span class="keyword">local</span> <span class="variable">coins</span> = <span class="variable">remoteFunc</span>:<span class="function">InvokeServer</span>(<span class="string">"coins"</span>)</pre>
                     </div>
                 </div>
             </div>
-
+            
             <div class="warning">
-                <strong>⚠️ Security Warning:</strong> Always validate data on the server side. Never trust client input!
+                <strong>⚠️ Security:</strong> Always validate data on the server! Never trust client input.
             </div>
         </section>
 
         <section id="math" class="section">
             <h2>🔢 Math & Vectors</h2>
-            
             <div class="grid">
                 <div class="card">
                     <h4>Vector3 Operations</h4>
-                    <div class="code-block">
+                    <div class="code-block compact">
                         <pre><span class="keyword">local</span> <span class="variable">v1</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)
 <span class="keyword">local</span> <span class="variable">v2</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)
 
-<span class="comment">-- Basic operations</span>
 <span class="keyword">local</span> <span class="variable">sum</span> = <span class="variable">v1</span> + <span class="variable">v2</span>
-<span class="keyword">local</span> <span class="variable">diff</span> = <span class="variable">v1</span> - <span class="variable">v2</span>
 <span class="keyword">local</span> <span class="variable">scaled</span> = <span class="variable">v1</span> * <span class="number">2</span>
-
-<span class="comment">-- Useful properties</span>
-<span class="keyword">local</span> <span class="variable">magnitude</span> = <span class="variable">v1</span>.<span class="variable">Magnitude</span>
+<span class="keyword">local</span> <span class="variable">mag</span> = <span class="variable">v1</span>.<span class="variable">Magnitude</span>
 <span class="keyword">local</span> <span class="variable">unit</span> = <span class="variable">v1</span>.<span class="variable">Unit</span>
 <span class="keyword">local</span> <span class="variable">dot</span> = <span class="variable">v1</span>:<span class="function">Dot</span>(<span class="variable">v2</span>)
 <span class="keyword">local</span> <span class="variable">cross</span> = <span class="variable">v1</span>:<span class="function">Cross</span>(<span class="variable">v2</span>)</pre>
@@ -558,18 +497,15 @@
                 </div>
                 
                 <div class="card">
-                    <h4>CFrame Operations</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- Create CFrame</span>
-<span class="keyword">local</span> <span class="variable">cf</span> = <span class="variable">CFrame</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
-
-<span class="comment">-- Look at position</span>
-<span class="keyword">local</span> <span class="variable">lookAt</span> = <span class="variable">CFrame</span>.<span class="function">lookAt</span>(<span class="variable">position</span>, <span class="variable">target</span>)
+                    <h4>CFrame Magic</h4>
+                    <div class="code-block compact">
+                        <pre><span class="keyword">local</span> <span class="variable">cf</span> = <span class="variable">CFrame</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
+<span class="keyword">local</span> <span class="variable">lookAt</span> = <span class="variable">CFrame</span>.<span class="function">lookAt</span>(<span class="variable">pos</span>, <span class="variable">target</span>)
 
 <span class="comment">-- Rotation</span>
 <span class="keyword">local</span> <span class="variable">rotated</span> = <span class="variable">cf</span> * <span class="variable">CFrame</span>.<span class="variable">Angles</span>(<span class="number">0</span>, <span class="function">math</span>.<span class="function">rad</span>(<span class="number">90</span>), <span class="number">0</span>)
 
-<span class="comment">-- Movement</span>
+<span class="comment">-- Direction vectors</span>
 <span class="keyword">local</span> <span class="variable">forward</span> = <span class="variable">cf</span>.<span class="variable">LookVector</span>
 <span class="keyword">local</span> <span class="variable">right</span> = <span class="variable">cf</span>.<span class="variable">RightVector</span>
 <span class="keyword">local</span> <span class="variable">up</span> = <span class="variable">cf</span>.<span class="variable">UpVector</span></pre>
@@ -577,412 +513,315 @@
                 </div>
             </div>
 
-            <h3>Common Math Functions</h3>
+            <h3>Useful Math Functions</h3>
             <div class="code-block">
-                <pre><span class="comment">-- Random numbers</span>
-<span class="keyword">local</span> <span class="variable">random</span> = <span class="function">math</span>.<span class="function">random</span>(<span class="number">1</span>, <span class="number">100</span>)
-<span class="keyword">local</span> <span class="variable">randomFloat</span> = <span class="function">math</span>.<span class="function">random</span>() * <span class="number">10</span>
+                <pre><span class="comment">-- Random & interpolation</span>
+<span class="keyword">local</span> <span class="variable">rand</span> = <span class="function">math</span>.<span class="function">random</span>(<span class="number">1</span>, <span class="number">100</span>)
+<span class="keyword">local function</span> <span class="function">lerp</span>(<span class="variable">a</span>, <span class="variable">b</span>, <span class="variable">t</span>) <span class="keyword">return</span> <span class="variable">a</span> + (<span class="variable">b</span> - <span class="variable">a</span>) * <span class="variable">t</span> <span class="keyword">end</span>
+<span class="keyword">local function</span> <span class="function">clamp</span>(<span class="variable">val</span>, <span class="variable">min</span>, <span class="variable">max</span>) <span class="keyword">return</span> <span class="function">math</span>.<span class="function">max</span>(<span class="variable">min</span>, <span class="function">math</span>.<span class="function">min</span>(<span class="variable">max</span>, <span class="variable">val</span>)) <span class="keyword">end</span>
+<span class="keyword">local function</span> <span class="function">distance</span>(<span class="variable">p1</span>, <span class="variable">p2</span>) <span class="keyword">return</span> (<span class="variable">p1</span> - <span class="variable">p2</span>).<span class="variable">Magnitude</span> <span class="keyword">end</span>
 
-<span class="comment">-- Interpolation</span>
-<span class="keyword">local function</span> <span class="function">lerp</span>(<span class="variable">a</span>, <span class="variable">b</span>, <span class="variable">t</span>)
-    <span class="keyword">return</span> <span class="variable">a</span> + (<span class="variable">b</span> - <span class="variable">a</span>) * <span class="variable">t</span>
-<span class="keyword">end</span>
-
-<span class="comment">-- Clamp value</span>
-<span class="keyword">local function</span> <span class="function">clamp</span>(<span class="variable">value</span>, <span class="variable">min</span>, <span class="variable">max</span>)
-    <span class="keyword">return</span> <span class="function">math</span>.<span class="function">max</span>(<span class="variable">min</span>, <span class="function">math</span>.<span class="function">min</span>(<span class="variable">max</span>, <span class="variable">value</span>))
-<span class="keyword">end</span>
-
-<span class="comment">-- Distance between points</span>
-<span class="keyword">local function</span> <span class="function">distance</span>(<span class="variable">p1</span>, <span class="variable">p2</span>)
-    <span class="keyword">return</span> (<span class="variable">p1</span> - <span class="variable">p2</span>).<span class="variable">Magnitude</span>
-<span class="keyword">end</span></pre>
-            </div>
-        </section>
-
-        <section id="raycasting" class="section">
-            <h2>🎯 Raycasting</h2>
-            <div class="code-block">
-                <pre><span class="comment">-- Basic raycast</span>
-<span class="keyword">local</span> <span class="variable">origin</span> = <span class="variable">rootPart</span>.<span class="variable">Position</span>
-<span class="keyword">local</span> <span class="variable">direction</span> = <span class="variable">rootPart</span>.<span class="variable">CFrame</span>.<span class="variable">LookVector</span> * <span class="number">100</span>
-
+<span class="comment">-- Raycasting</span>
 <span class="keyword">local</span> <span class="variable">params</span> = <span class="variable">RaycastParams</span>.<span class="keyword">new</span>()
 <span class="variable">params</span>.<span class="variable">FilterType</span> = <span class="variable">Enum</span>.<span class="variable">RaycastFilterType</span>.<span class="variable">Blacklist</span>
 <span class="variable">params</span>.<span class="variable">FilterDescendantsInstances</span> = {<span class="variable">character</span>}
-
-<span class="keyword">local</span> <span class="variable">result</span> = <span class="variable">workspace</span>:<span class="function">Raycast</span>(<span class="variable">origin</span>, <span class="variable">direction</span>, <span class="variable">params</span>)
-
-<span class="keyword">if</span> <span class="variable">result</span> <span class="keyword">then</span>
-    <span class="keyword">local</span> <span class="variable">hitPart</span> = <span class="variable">result</span>.<span class="variable">Instance</span>
-    <span class="keyword">local</span> <span class="variable">hitPosition</span> = <span class="variable">result</span>.<span class="variable">Position</span>
-    <span class="keyword">local</span> <span class="variable">normal</span> = <span class="variable">result</span>.<span class="variable">Normal</span>
-    <span class="keyword">local</span> <span class="variable">distance</span> = <span class="variable">result</span>.<span class="variable">Distance</span>
-    
-    <span class="function">print</span>(<span class="string">"Hit:"</span>, <span class="variable">hitPart</span>.<span class="variable">Name</span>)
-<span class="keyword">else</span>
-    <span class="function">print</span>(<span class="string">"No hit"</span>)
-<span class="keyword">end</span>
-
-<span class="comment">-- Multiple raycasts</span>
-<span class="keyword">local function</span> <span class="function">castMultipleRays</span>()
-    <span class="keyword">local</span> <span class="variable">results</span> = {}
-    <span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
-        <span class="keyword">local</span> <span class="variable">angle</span> = (<span class="variable">i</span> - <span class="number">3</span>) * <span class="function">math</span>.<span class="function">rad</span>(<span class="number">15</span>)
-        <span class="keyword">local</span> <span class="variable">rotated</span> = <span class="variable">CFrame</span>.<span class="variable">Angles</span>(<span class="number">0</span>, <span class="variable">angle</span>, <span class="number">0</span>) * <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">-100</span>)
-        <span class="keyword">local</span> <span class="variable">result</span> = <span class="variable">workspace</span>:<span class="function">Raycast</span>(<span class="variable">origin</span>, <span class="variable">rotated</span>, <span class="variable">params</span>)
-        <span class="variable">results</span>[<span class="variable">i</span>] = <span class="variable">result</span>
-    <span class="keyword">end</span>
-    <span class="keyword">return</span> <span class="variable">results</span>
-<span class="keyword">end</span></pre>
+<span class="keyword">local</span> <span class="variable">result</span> = <span class="variable">workspace</span>:<span class="function">Raycast</span>(<span class="variable">origin</span>, <span class="variable">direction</span>, <span class="variable">params</span>)</pre>
             </div>
         </section>
 
         <section id="tweening" class="section">
             <h2>🎬 Tweening & Animation</h2>
             <div class="code-block">
-                <pre><span class="keyword">local</span> <span class="variable">TweenService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"TweenService"</span>)
-
-<span class="comment">-- Basic tween</span>
-<span class="keyword">local</span> <span class="variable">tweenInfo</span> = <span class="variable">TweenInfo</span>.<span class="keyword">new</span>(
-    <span class="number">2</span>, <span class="comment">-- Duration</span>
-    <span class="variable">Enum</span>.<span class="variable">EasingStyle</span>.<span class="variable">Quad</span>, <span class="comment">-- Easing style</span>
-    <span class="variable">Enum</span>.<span class="variable">EasingDirection</span>.<span class="variable">Out</span>, <span class="comment">-- Easing direction</span>
-    <span class="number">0</span>, <span class="comment">-- Repeat count (0 = no repeat)</span>
-    <span class="keyword">false</span>, <span class="comment">-- Reverses</span>
-    <span class="number">0</span> <span class="comment">-- Delay</span>
-)
-
-<span class="keyword">local</span> <span class="variable">goal</span> = {
-    <span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">20</span>, <span class="number">0</span>),
-    <span class="variable">Transparency</span> = <span class="number">0.5</span>,
-    <span class="variable">Size</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>)
-}
-
-<span class="keyword">local</span> <span class="variable">tween</span> = <span class="variable">TweenService</span>:<span class="function">Create</span>(<span class="variable">part</span>, <span class="variable">tweenInfo</span>, <span class="variable">goal</span>)
-
-<span class="comment">-- Tween events</span>
-<span class="variable">tween</span>.<span class="variable">Completed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
-    <span class="function">print</span>(<span class="string">"Tween completed!"</span>)
-<span class="keyword">end</span>)
-
+                <pre><span class="comment">-- Basic tween</span>
+<span class="keyword">local</span> <span class="variable">tweenInfo</span> = <span class="variable">TweenInfo</span>.<span class="keyword">new</span>(<span class="number">2</span>, <span class="variable">Enum</span>.<span class="variable">EasingStyle</span>.<span class="variable">Quad</span>, <span class="variable">Enum</span>.<span class="variable">EasingDirection</span>.<span class="variable">Out</span>)
+<span class="keyword">local</span> <span class="variable">tween</span> = <span class="variable">TweenService</span>:<span class="function">Create</span>(<span class="variable">part</span>, <span class="variable">tweenInfo</span>, {<span class="variable">Position</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">20</span>, <span class="number">0</span>)})
 <span class="variable">tween</span>:<span class="function">Play</span>()
 
-<span class="comment">-- Chain tweens</span>
-<span class="keyword">local function</span> <span class="function">chainTweens</span>(<span class="variable">object</span>, <span class="variable">tweenData</span>)
-    <span class="keyword">local</span> <span class="variable">currentTween</span> = <span class="number">1</span>
-    
-    <span class="keyword">local function</span> <span class="function">playNext</span>()
-        <span class="keyword">if</span> <span class="variable">currentTween</span> <= #<span class="variable">tweenData</span> <span class="keyword">then</span>
-            <span class="keyword">local</span> <span class="variable">data</span> = <span class="variable">tweenData</span>[<span class="variable">currentTween</span>]
-            <span class="keyword">local</span> <span class="variable">tween</span> = <span class="variable">TweenService</span>:<span class="function">Create</span>(<span class="variable">object</span>, <span class="variable">data</span>.<span class="variable">info</span>, <span class="variable">data</span>.<span class="variable">goal</span>)
-            
-            <span class="variable">tween</span>.<span class="variable">Completed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
-                <span class="variable">currentTween</span> = <span class="variable">currentTween</span> + <span class="number">1</span>
-                <span class="function">playNext</span>()
-            <span class="keyword">end</span>)
-            
-            <span class="variable">tween</span>:<span class="function">Play</span>()
-        <span class="keyword">end</span>
-    <span class="keyword">end</span>
-    
-    <span class="function">playNext</span>()
-<span class="keyword">end</span></pre>
+<span class="comment">-- Tween events</span>
+<span class="variable">tween</span>.<span class="variable">Completed</span>:<span class="function">Connect</span>(<span class="keyword">function</span>() <span class="function">print</span>(<span class="string">"Done!"</span>) <span class="keyword">end</span>)
+
+<span class="comment">-- Common easing styles: Quad, Cubic, Quart, Quint, Sine, Back, Bounce, Elastic</span>
+<span class="comment">-- Directions: In, Out, InOut</span></pre>
             </div>
         </section>
 
-        <section id="oop" class="section">
-            <h2>🏗️ Object-Oriented Programming</h2>
+        <section id="gui" class="section">
+            <h2>🖥️ GUI Creation</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>Basic GUI Elements</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- ScreenGui</span>
+<span class="keyword">local</span> <span class="variable">gui</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"ScreenGui"</span>)
+<span class="variable">gui</span>.<span class="variable">Parent</span> = <span class="variable">player</span>.<span class="variable">PlayerGui</span>
+
+<span class="comment">-- Frame</span>
+<span class="keyword">local</span> <span class="variable">frame</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"Frame"</span>)
+<span class="variable">frame</span>.<span class="variable">Size</span> = <span class="variable">UDim2</span>.<span class="keyword">new</span>(<span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0.5</span>, <span class="number">0</span>)
+<span class="variable">frame</span>.<span class="variable">Position</span> = <span class="variable">UDim2</span>.<span class="keyword">new</span>(<span class="number">0.25</span>, <span class="number">0</span>, <span class="number">0.25</span>, <span class="number">0</span>)
+<span class="variable">frame</span>.<span class="variable">BackgroundColor3</span> = <span class="variable">Color3</span>.<span class="function">fromRGB</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)
+<span class="variable">frame</span>.<span class="variable">Parent</span> = <span class="variable">gui</span></pre>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Text & Buttons</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- TextLabel</span>
+<span class="keyword">local</span> <span class="variable">label</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"TextLabel"</span>)
+<span class="variable">label</span>.<span class="variable">Text</span> = <span class="string">"Hello World"</span>
+<span class="variable">label</span>.<span class="variable">TextScaled</span> = <span class="keyword">true</span>
+<span class="variable">label</span>.<span class="variable">Parent</span> = <span class="variable">frame</span>
+
+<span class="comment">-- TextButton</span>
+<span class="keyword">local</span> <span class="variable">button</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"TextButton"</span>)
+<span class="variable">button</span>.<span class="variable">Text</span> = <span class="string">"Click Me"</span>
+<span class="variable">button</span>.<span class="variable">MouseButton1Click</span>:<span class="function">Connect</span>(<span class="keyword">function</span>()
+    <span class="function">print</span>(<span class="string">"Clicked!"</span>)
+<span class="keyword">end</span>)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>GUI Properties & Effects</h3>
             <div class="code-block">
-                <pre><span class="comment">-- Simple class</span>
-<span class="keyword">local</span> <span class="variable">Player</span> = {}
+                <pre><span class="comment">-- UDim2 positioning: UDim2.new(scaleX, offsetX, scaleY, offsetY)</span>
+<span class="variable">frame</span>.<span class="variable">AnchorPoint</span> = <span class="variable">Vector2</span>.<span class="keyword">new</span>(<span class="number">0.5</span>, <span class="number">0.5</span>)  <span class="comment">-- Center anchor</span>
+<span class="variable">frame</span>.<span class="variable">BorderSizePixel</span> = <span class="number">0</span>                <span class="comment">-- Remove border</span>
+<span class="variable">frame</span>.<span class="variable">BackgroundTransparency</span> = <span class="number">0.5</span>      <span class="comment">-- Semi-transparent</span>
+
+<span class="comment">-- Corner rounding</span>
+<span class="keyword">local</span> <span class="variable">corner</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"UICorner"</span>)
+<span class="variable">corner</span>.<span class="variable">CornerRadius</span> = <span class="variable">UDim</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">10</span>)
+<span class="variable">corner</span>.<span class="variable">Parent</span> = <span class="variable">frame</span>
+
+<span class="comment">-- Gradient</span>
+<span class="keyword">local</span> <span class="variable">gradient</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"UIGradient"</span>)
+<span class="variable">gradient</span>.<span class="variable">Color</span> = <span class="variable">ColorSequence</span>.<span class="keyword">new</span>(<span class="variable">Color3</span>.<span class="function">fromRGB</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="variable">Color3</span>.<span class="function">fromRGB</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>))
+<span class="variable">gradient</span>.<span class="variable">Parent</span> = <span class="variable">frame</span></pre>
+            </div>
+        </section>
+
+        <section id="datastores" class="section">
+            <h2>💾 DataStores</h2>
+            <div class="code-block">
+                <pre><span class="keyword">local</span> <span class="variable">dataStore</span> = <span class="variable">DataStoreService</span>:<span class="function">GetDataStore</span>(<span class="string">"PlayerData"</span>)
+
+<span class="comment">-- Save data</span>
+<span class="keyword">local function</span> <span class="function">saveData</span>(<span class="variable">player</span>, <span class="variable">data</span>)
+    <span class="keyword">local</span> <span class="variable">success</span>, <span class="variable">err</span> = <span class="function">pcall</span>(<span class="keyword">function</span>()
+        <span class="variable">dataStore</span>:<span class="function">SetAsync</span>(<span class="variable">player</span>.<span class="variable">UserId</span>, <span class="variable">data</span>)
+    <span class="keyword">end</span>)
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">success</span> <span class="keyword">then</span> <span class="function">warn</span>(<span class="string">"Save failed:"</span>, <span class="variable">err</span>) <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">-- Load data</span>
+<span class="keyword">local function</span> <span class="function">loadData</span>(<span class="variable">player</span>)
+    <span class="keyword">local</span> <span class="variable">success</span>, <span class="variable">data</span> = <span class="function">pcall</span>(<span class="keyword">function</span>()
+        <span class="keyword">return</span> <span class="variable">dataStore</span>:<span class="function">GetAsync</span>(<span class="variable">player</span>.<span class="variable">UserId</span>)
+    <span class="keyword">end</span>)
+    <span class="keyword">return</span> <span class="variable">success</span> <span class="keyword">and</span> <span class="variable">data</span> <span class="keyword">or</span> {<span class="variable">coins</span> = <span class="number">0</span>, <span class="variable">level</span> = <span class="number">1</span>}
+<span class="keyword">end</span>
+
+<span class="comment">-- Ordered DataStore (leaderboards)</span>
+<span class="keyword">local</span> <span class="variable">leaderboard</span> = <span class="variable">DataStoreService</span>:<span class="function">GetOrderedDataStore</span>(<span class="string">"Leaderboard"</span>)
+<span class="variable">leaderboard</span>:<span class="function">SetAsync</span>(<span class="variable">player</span>.<span class="variable">UserId</span>, <span class="variable">score</span>)
+<span class="keyword">local</span> <span class="variable">pages</span> = <span class="variable">leaderboard</span>:<span class="function">GetSortedAsync</span>(<span class="keyword">false</span>, <span class="number">10</span>)</pre>
+            </div>
+        </section>
+
+        <section id="physics" class="section">
+            <h2>⚛️ Physics & Forces</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>BodyVelocity & Forces</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- BodyVelocity (deprecated, use AssemblyLinearVelocity)</span>
+<span class="variable">part</span>.<span class="variable">AssemblyLinearVelocity</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>)
+<span class="variable">part</span>.<span class="variable">AssemblyAngularVelocity</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
+
+<span class="comment">-- VectorForce</span>
+<span class="keyword">local</span> <span class="variable">force</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"VectorForce"</span>)
+<span class="variable">force</span>.<span class="variable">Force</span> = <span class="variable">Vector3</span>.<span class="keyword">new</span>(<span class="number">0</span>, <span class="number">1000</span>, <span class="number">0</span>)
+<span class="variable">force</span>.<span class="variable">Parent</span> = <span class="variable">part</span></pre>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Joints & Constraints</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- WeldConstraint</span>
+<span class="keyword">local</span> <span class="variable">weld</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"WeldConstraint"</span>)
+<span class="variable">weld</span>.<span class="variable">Part0</span> = <span class="variable">part1</span>
+<span class="variable">weld</span>.<span class="variable">Part1</span> = <span class="variable">part2</span>
+<span class="variable">weld</span>.<span class="variable">Parent</span> = <span class="variable">part1</span>
+
+<span class="comment">-- HingeConstraint</span>
+<span class="keyword">local</span> <span class="variable">hinge</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"HingeConstraint"</span>)
+<span class="variable">hinge</span>.<span class="variable">ActuatorType</span> = <span class="variable">Enum</span>.<span class="variable">ActuatorType</span>.<span class="variable">Motor</span>
+<span class="variable">hinge</span>.<span class="variable">MotorMaxTorque</span> = <span class="number">1000</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="audio" class="section">
+            <h2>🔊 Audio & Sounds</h2>
+            <div class="code-block">
+                <pre><span class="comment">-- Create sound</span>
+<span class="keyword">local</span> <span class="variable">sound</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"Sound"</span>)
+<span class="variable">sound</span>.<span class="variable">SoundId</span> = <span class="string">"rbxassetid://123456789"</span>
+<span class="variable">sound</span>.<span class="variable">Volume</span> = <span class="number">0.5</span>
+<span class="variable">sound</span>.<span class="variable">Pitch</span> = <span class="number">1</span>
+<span class="variable">sound</span>.<span class="variable">Looped</span> = <span class="keyword">false</span>
+<span class="variable">sound</span>.<span class="variable">Parent</span> = <span class="variable">workspace</span>
+
+<span class="comment">-- Play/stop sounds</span>
+<span class="variable">sound</span>:<span class="function">Play</span>()
+<span class="variable">sound</span>:<span class="function">Stop</span>()
+<span class="variable">sound</span>:<span class="function">Pause</span>()
+<span class="variable">sound</span>:<span class="function">Resume</span>()
+
+<span class="comment">-- Sound events</span>
+<span class="variable">sound</span>.<span class="variable">Ended</span>:<span class="function">Connect</span>(<span class="keyword">function</span>() <span class="function">print</span>(<span class="string">"Sound finished"</span>) <span class="keyword">end</span>)
+
+<span class="comment">-- Sound effects</span>
+<span class="keyword">local</span> <span class="variable">reverb</span> = <span class="variable">Instance</span>.<span class="keyword">new</span>(<span class="string">"ReverbSoundEffect"</span>)
+<span class="variable">reverb</span>.<span class="variable">Parent</span> = <span class="variable">sound</span></pre>
+            </div>
+        </section>
+
+        <section id="advanced" class="section">
+            <h2>🚀 Advanced Techniques</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>Module Scripts</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- MyModule.lua</span>
+<span class="keyword">local</span> <span class="variable">MyModule</span> = {}
+
+<span class="keyword">function</span> <span class="variable">MyModule</span>.<span class="function">sayHello</span>(<span class="variable">name</span>)
+    <span class="keyword">return</span> <span class="string">"Hello, "</span> .. <span class="variable">name</span>
+<span class="keyword">end</span>
+
+<span class="keyword">local function</span> <span class="function">private</span>()
+    <span class="keyword">return</span> <span class="string">"Hidden"</span>
+<span class="keyword">end</span>
+
+<span class="keyword">return</span> <span class="variable">MyModule</span>
+
+<span class="comment">-- Usage</span>
+<span class="keyword">local</span> <span class="variable">mod</span> = <span class="function">require</span>(<span class="variable">script</span>.<span class="variable">MyModule</span>)</pre>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Object-Oriented Programming</h4>
+                    <div class="code-block compact">
+                        <pre><span class="keyword">local</span> <span class="variable">Player</span> = {}
 <span class="variable">Player</span>.<span class="variable">__index</span> = <span class="variable">Player</span>
 
 <span class="keyword">function</span> <span class="variable">Player</span>.<span class="keyword">new</span>(<span class="variable">name</span>, <span class="variable">health</span>)
     <span class="keyword">local</span> <span class="variable">self</span> = <span class="function">setmetatable</span>({}, <span class="variable">Player</span>)
     <span class="variable">self</span>.<span class="variable">name</span> = <span class="variable">name</span>
     <span class="variable">self</span>.<span class="variable">health</span> = <span class="variable">health</span> <span class="keyword">or</span> <span class="number">100</span>
-    <span class="variable">self</span>.<span class="variable">maxHealth</span> = <span class="variable">self</span>.<span class="variable">health</span>
     <span class="keyword">return</span> <span class="variable">self</span>
 <span class="keyword">end</span>
 
-<span class="keyword">function</span> <span class="variable">Player</span>:<span class="function">takeDamage</span>(<span class="variable">amount</span>)
-    <span class="variable">self</span>.<span class="variable">health</span> = <span class="function">math</span>.<span class="function">max</span>(<span class="number">0</span>, <span class="variable">self</span>.<span class="variable">health</span> - <span class="variable">amount</span>)
-    <span class="keyword">if</span> <span class="variable">self</span>.<span class="variable">health</span> == <span class="number">0</span> <span class="keyword">then</span>
-        <span class="variable">self</span>:<span class="function">die</span>()
-    <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">Player</span>:<span class="function">heal</span>(<span class="variable">amount</span>)
-    <span class="variable">self</span>.<span class="variable">health</span> = <span class="function">math</span>.<span class="function">min</span>(<span class="variable">self</span>.<span class="variable">maxHealth</span>, <span class="variable">self</span>.<span class="variable">health</span> + <span class="variable">amount</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">Player</span>:<span class="function">die</span>()
-    <span class="function">print</span>(<span class="variable">self</span>.<span class="variable">name</span> .. <span class="string">" has died!"</span>)
-<span class="keyword">end</span>
-
-<span class="comment">-- Usage</span>
-<span class="keyword">local</span> <span class="variable">player1</span> = <span class="variable">Player</span>.<span class="keyword">new</span>(<span class="string">"John"</span>, <span class="number">150</span>)
-<span class="variable">player1</span>:<span class="function">takeDamage</span>(<span class="number">50</span>)</pre>
-            </div>
-
-            <h3>Inheritance</h3>
-            <div class="code-block">
-                <pre><span class="comment">-- Warrior class inherits from Player</span>
-<span class="keyword">local</span> <span class="variable">Warrior</span> = <span class="function">setmetatable</span>({}, {<span class="variable">__index</span> = <span class="variable">Player</span>})
-<span class="variable">Warrior</span>.<span class="variable">__index</span> = <span class="variable">Warrior</span>
-
-<span class="keyword">function</span> <span class="variable">Warrior</span>.<span class="keyword">new</span>(<span class="variable">name</span>, <span class="variable">health</span>, <span class="variable">armor</span>)
-    <span class="keyword">local</span> <span class="variable">self</span> = <span class="variable">Player</span>.<span class="keyword">new</span>(<span class="variable">name</span>, <span class="variable">health</span>)
-    <span class="function">setmetatable</span>(<span class="variable">self</span>, <span class="variable">Warrior</span>)
-    <span class="variable">self</span>.<span class="variable">armor</span> = <span class="variable">armor</span> <span class="keyword">or</span> <span class="number">20</span>
-    <span class="keyword">return</span> <span class="variable">self</span>
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">Warrior</span>:<span class="function">takeDamage</span>(<span class="variable">amount</span>)
-    <span class="keyword">local</span> <span class="variable">reducedDamage</span> = <span class="function">math</span>.<span class="function">max</span>(<span class="number">1</span>, <span class="variable">amount</span> - <span class="variable">self</span>.<span class="variable">armor</span>)
-    <span class="variable">Player</span>.<span class="function">takeDamage</span>(<span class="variable">self</span>, <span class="variable">reducedDamage</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">Warrior</span>:<span class="function">charge</span>(<span class="variable">target</span>)
-    <span class="function">print</span>(<span class="variable">self</span>.<span class="variable">name</span> .. <span class="string">" charges at "</span> .. <span class="variable">target</span>.<span class="variable">name</span> .. <span class="string">"!"</span>)
-    <span class="variable">target</span>:<span class="function">takeDamage</span>(<span class="number">30</span>)
+<span class="keyword">function</span> <span class="variable">Player</span>:<span class="function">takeDamage</span>(<span class="variable">amt</span>)
+    <span class="variable">self</span>.<span class="variable">health</span> = <span class="function">math</span>.<span class="function">max</span>(<span class="number">0</span>, <span class="variable">self</span>.<span class="variable">health</span> - <span class="variable">amt</span>)
 <span class="keyword">end</span></pre>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <section id="metatables" class="section">
-            <h2>🔮 Metatables & Metamethods</h2>
+            <h3>Coroutines & Async</h3>
             <div class="code-block">
-                <pre><span class="comment">-- Basic metatable</span>
-<span class="keyword">local</span> <span class="variable">mt</span> = {
-    <span class="variable">__index</span> = <span class="keyword">function</span>(<span class="variable">table</span>, <span class="variable">key</span>)
-        <span class="keyword">return</span> <span class="string">"Key not found: "</span> .. <span class="variable">key</span>
-    <span class="keyword">end</span>,
-    
-    <span class="variable">__newindex</span> = <span class="keyword">function</span>(<span class="variable">table</span>, <span class="variable">key</span>, <span class="variable">value</span>)
-        <span class="function">print</span>(<span class="string">"Setting "</span> .. <span class="variable">key</span> .. <span class="string">" to "</span> .. <span class="function">tostring</span>(<span class="variable">value</span>))
-        <span class="function">rawset</span>(<span class="variable">table</span>, <span class="variable">key</span>, <span class="variable">value</span>)
-    <span class="keyword">end</span>,
-    
-    <span class="variable">__add</span> = <span class="keyword">function</span>(<span class="variable">a</span>, <span class="variable">b</span>)
-        <span class="keyword">local</span> <span class="variable">result</span> = {}
-        <span class="keyword">for</span> <span class="variable">k</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">a</span>) <span class="keyword">do</span>
-            <span class="variable">result</span>[<span class="variable">k</span>] = <span class="variable">v</span>
-        <span class="keyword">end</span>
-        <span class="keyword">for</span> <span class="variable">k</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">b</span>) <span class="keyword">do</span>
-            <span class="variable">result</span>[<span class="variable">k</span>] = <span class="variable">v</span>
-        <span class="keyword">end</span>
-        <span class="keyword">return</span> <span class="function">setmetatable</span>(<span class="variable">result</span>, <span class="variable">mt</span>)
-    <span class="keyword">end</span>,
-    
-    <span class="variable">__tostring</span> = <span class="keyword">function</span>(<span class="variable">table</span>)
-        <span class="keyword">local</span> <span class="variable">result</span> = <span class="string">"{"</span>
-        <span class="keyword">for</span> <span class="variable">k</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">table</span>) <span class="keyword">do</span>
-            <span class="variable">result</span> = <span class="variable">result</span> .. <span class="variable">k</span> .. <span class="string">" = "</span> .. <span class="function">tostring</span>(<span class="variable">v</span>) .. <span class="string">", "</span>
-        <span class="keyword">end</span>
-        <span class="keyword">return</span> <span class="variable">result</span> .. <span class="string">"}"</span>
+                <pre><span class="comment">-- Spawn new thread</span>
+<span class="function">spawn</span>(<span class="keyword">function</span>()
+    <span class="keyword">while</span> <span class="keyword">true</span> <span class="keyword">do</span>
+        <span class="function">print</span>(<span class="string">"Background task"</span>)
+        <span class="function">wait</span>(<span class="number">5</span>)
     <span class="keyword">end</span>
-}
+<span class="keyword">end</span>)
 
-<span class="keyword">local</span> <span class="variable">myTable</span> = <span class="function">setmetatable</span>({}, <span class="variable">mt</span>)
-<span class="variable">myTable</span>.<span class="variable">x</span> = <span class="number">10</span>
-<span class="function">print</span>(<span class="variable">myTable</span>.<span class="variable">nonexistent</span>) <span class="comment">-- "Key not found: nonexistent"</span></pre>
-            </div>
-        </section>
-
-        <section id="advanced" class="section">
-            <h2>🚀 Advanced Techniques</h2>
-            
-            <div class="grid">
-                <div class="card">
-                    <h4>Coroutines</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- Create coroutine</span>
+<span class="comment">-- Coroutines</span>
 <span class="keyword">local</span> <span class="variable">co</span> = <span class="function">coroutine</span>.<span class="function">create</span>(<span class="keyword">function</span>()
     <span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="number">5</span> <span class="keyword">do</span>
         <span class="function">print</span>(<span class="string">"Step:"</span>, <span class="variable">i</span>)
         <span class="function">coroutine</span>.<span class="function">yield</span>()
     <span class="keyword">end</span>
 <span class="keyword">end</span>)
-
-<span class="comment">-- Resume coroutine</span>
-<span class="keyword">while</span> <span class="function">coroutine</span>.<span class="function">status</span>(<span class="variable">co</span>) ~= <span class="string">"dead"</span> <span class="keyword">do</span>
-    <span class="function">coroutine</span>.<span class="function">resume</span>(<span class="variable">co</span>)
-    <span class="function">wait</span>(<span class="number">1</span>)
-<span class="keyword">end</span>
-
-<span class="comment">-- Spawn function</span>
-<span class="function">spawn</span>(<span class="keyword">function</span>()
-    <span class="keyword">while</span> <span class="keyword">true</span> <span class="keyword">do</span>
-        <span class="function">print</span>(<span class="string">"Background task"</span>)
-        <span class="function">wait</span>(<span class="number">5</span>)
-    <span class="keyword">end</span>
-<span class="keyword">end</span>)</pre>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h4>Module Scripts</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- MyModule.lua</span>
-<span class="keyword">local</span> <span class="variable">MyModule</span> = {}
-
-<span class="variable">MyModule</span>.<span class="variable">VERSION</span> = <span class="string">"1.0.0"</span>
-
-<span class="keyword">function</span> <span class="variable">MyModule</span>.<span class="function">sayHello</span>(<span class="variable">name</span>)
-    <span class="keyword">return</span> <span class="string">"Hello, "</span> .. <span class="variable">name</span> .. <span class="string">"!"</span>
-<span class="keyword">end</span>
-
-<span class="keyword">local function</span> <span class="function">privateFunction</span>()
-    <span class="keyword">return</span> <span class="string">"This is private"</span>
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">MyModule</span>.<span class="function">init</span>()
-    <span class="function">print</span>(<span class="string">"Module initialized"</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">return</span> <span class="variable">MyModule</span>
-
-<span class="comment">-- Using the module</span>
-<span class="keyword">local</span> <span class="variable">MyModule</span> = <span class="function">require</span>(<span class="variable">script</span>.<span class="variable">MyModule</span>)
-<span class="function">print</span>(<span class="variable">MyModule</span>.<span class="function">sayHello</span>(<span class="string">"World"</span>))</pre>
-                    </div>
-                </div>
+<span class="function">coroutine</span>.<span class="function">resume</span>(<span class="variable">co</span>)</pre>
             </div>
 
-            <h3>DataStore Service</h3>
+            <h3>HttpService & JSON</h3>
             <div class="code-block">
-                <pre><span class="keyword">local</span> <span class="variable">DataStoreService</span> = <span class="variable">game</span>:<span class="function">GetService</span>(<span class="string">"DataStoreService"</span>)
-<span class="keyword">local</span> <span class="variable">playerData</span> = <span class="variable">DataStoreService</span>:<span class="function">GetDataStore</span>(<span class="string">"PlayerData"</span>)
+                <pre><span class="comment">-- Enable HTTP requests in game settings!</span>
+<span class="keyword">local</span> <span class="variable">data</span> = {<span class="variable">player</span> = <span class="string">"John"</span>, <span class="variable">score</span> = <span class="number">100</span>}
+<span class="keyword">local</span> <span class="variable">json</span> = <span class="variable">HttpService</span>:<span class="function">JSONEncode</span>(<span class="variable">data</span>)
+<span class="keyword">local</span> <span class="variable">decoded</span> = <span class="variable">HttpService</span>:<span class="function">JSONDecode</span>(<span class="variable">json</span>)
 
-<span class="comment">-- Save data</span>
-<span class="keyword">local function</span> <span class="function">saveData</span>(<span class="variable">player</span>, <span class="variable">data</span>)
-    <span class="keyword">local</span> <span class="variable">success</span>, <span class="variable">error</span> = <span class="function">pcall</span>(<span class="keyword">function</span>()
-        <span class="variable">playerData</span>:<span class="function">SetAsync</span>(<span class="variable">player</span>.<span class="variable">UserId</span>, <span class="variable">data</span>)
-    <span class="keyword">end</span>)
-    
-    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">success</span> <span class="keyword">then</span>
-        <span class="function">warn</span>(<span class="string">"Failed to save data:"</span>, <span class="variable">error</span>)
-    <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-<span class="comment">-- Load data</span>
-<span class="keyword">local function</span> <span class="function">loadData</span>(<span class="variable">player</span>)
-    <span class="keyword">local</span> <span class="variable">success</span>, <span class="variable">data</span> = <span class="function">pcall</span>(<span class="keyword">function</span>()
-        <span class="keyword">return</span> <span class="variable">playerData</span>:<span class="function">GetAsync</span>(<span class="variable">player</span>.<span class="variable">UserId</span>)
-    <span class="keyword">end</span>)
-    
-    <span class="keyword">if</span> <span class="variable">success</span> <span class="keyword">then</span>
-        <span class="keyword">return</span> <span class="variable">data</span> <span class="keyword">or</span> {<span class="variable">coins</span> = <span class="number">0</span>, <span class="variable">level</span> = <span class="number">1</span>}
-    <span class="keyword">else</span>
-        <span class="function">warn</span>(<span class="string">"Failed to load data:"</span>, <span class="variable">data</span>)
-        <span class="keyword">return</span> {<span class="variable">coins</span> = <span class="number">0</span>, <span class="variable">level</span> = <span class="number">1</span>}
-    <span class="keyword">end</span>
-<span class="keyword">end</span></pre>
+<span class="comment">-- HTTP Request</span>
+<span class="keyword">local</span> <span class="variable">response</span> = <span class="variable">HttpService</span>:<span class="function">GetAsync</span>(<span class="string">"https://api.example.com/data"</span>)
+<span class="variable">HttpService</span>:<span class="function">PostAsync</span>(<span class="string">"https://api.example.com/save"</span>, <span class="variable">json</span>, <span class="variable">Enum</span>.<span class="variable">HttpContentType</span>.<span class="variable">ApplicationJson</span>)</pre>
             </div>
         </section>
 
-        <section id="patterns" class="section">
-            <h2>🎨 Design Patterns</h2>
-            
+        <section id="debugging" class="section">
+            <h2>🔍 Debugging & Testing</h2>
             <div class="grid">
                 <div class="card">
-                    <h4>Singleton Pattern</h4>
-                    <div class="code-block">
-                        <pre><span class="keyword">local</span> <span class="variable">GameManager</span> = {}
-<span class="keyword">local</span> <span class="variable">instance</span> = <span class="keyword">nil</span>
+                    <h4>Debug Functions</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- Print variants</span>
+<span class="function">print</span>(<span class="string">"Normal message"</span>)
+<span class="function">warn</span>(<span class="string">"Warning message"</span>)
+<span class="function">error</span>(<span class="string">"Error message"</span>)
 
-<span class="keyword">function</span> <span class="variable">GameManager</span>.<span class="function">getInstance</span>()
-    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">instance</span> <span class="keyword">then</span>
-        <span class="variable">instance</span> = {
-            <span class="variable">score</span> = <span class="number">0</span>,
-            <span class="variable">level</span> = <span class="number">1</span>,
-            <span class="variable">players</span> = {}
-        }
-        <span class="function">setmetatable</span>(<span class="variable">instance</span>, {<span class="variable">__index</span> = <span class="variable">GameManager</span>})
-    <span class="keyword">end</span>
-    <span class="keyword">return</span> <span class="variable">instance</span>
-<span class="keyword">end</span>
+<span class="comment">-- Assertions</span>
+<span class="function">assert</span>(<span class="variable">condition</span>, <span class="string">"Error if false"</span>)
 
-<span class="keyword">function</span> <span class="variable">GameManager</span>:<span class="function">addScore</span>(<span class="variable">points</span>)
-    <span class="variable">self</span>.<span class="variable">score</span> = <span class="variable">self</span>.<span class="variable">score</span> + <span class="variable">points</span>
-<span class="keyword">end</span></pre>
+<span class="comment">-- Type checking</span>
+<span class="function">print</span>(<span class="function">type</span>(<span class="variable">variable</span>))
+<span class="function">print</span>(<span class="function">typeof</span>(<span class="variable">instance</span>))</pre>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <h4>Observer Pattern</h4>
-                    <div class="code-block">
-                        <pre><span class="keyword">local</span> <span class="variable">EventSystem</span> = {}
-<span class="variable">EventSystem</span>.<span class="variable">__index</span> = <span class="variable">EventSystem</span>
+                    <h4>Error Handling</h4>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- Protected calls</span>
+<span class="keyword">local</span> <span class="variable">success</span>, <span class="variable">result</span> = <span class="function">pcall</span>(<span class="keyword">function</span>()
+    <span class="keyword">return</span> <span class="variable">riskyOperation</span>()
+<span class="keyword">end</span>)
 
-<span class="keyword">function</span> <span class="variable">EventSystem</span>.<span class="keyword">new</span>()
-    <span class="keyword">return</span> <span class="function">setmetatable</span>({
-        <span class="variable">listeners</span> = {}
-    }, <span class="variable">EventSystem</span>)
+<span class="keyword">if</span> <span class="variable">success</span> <span class="keyword">then</span>
+    <span class="function">print</span>(<span class="string">"Result:"</span>, <span class="variable">result</span>)
+<span class="keyword">else</span>
+    <span class="function">warn</span>(<span class="string">"Error:"</span>, <span class="variable">result</span>)
 <span class="keyword">end</span>
 
-<span class="keyword">function</span> <span class="variable">EventSystem</span>:<span class="function">on</span>(<span class="variable">event</span>, <span class="variable">callback</span>)
-    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">self</span>.<span class="variable">listeners</span>[<span class="variable">event</span>] <span class="keyword">then</span>
-        <span class="variable">self</span>.<span class="variable">listeners</span>[<span class="variable">event</span>] = {}
-    <span class="keyword">end</span>
-    <span class="function">table</span>.<span class="function">insert</span>(<span class="variable">self</span>.<span class="variable">listeners</span>[<span class="variable">event</span>], <span class="variable">callback</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">EventSystem</span>:<span class="function">emit</span>(<span class="variable">event</span>, ...)
-    <span class="keyword">if</span> <span class="variable">self</span>.<span class="variable">listeners</span>[<span class="variable">event</span>] <span class="keyword">then</span>
-        <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">callback</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">self</span>.<span class="variable">listeners</span>[<span class="variable">event</span>]) <span class="keyword">do</span>
-            <span class="variable">callback</span>(...)
-        <span class="keyword">end</span>
-    <span class="keyword">end</span>
+<span class="comment">-- Try-catch pattern</span>
+<span class="keyword">local function</span> <span class="function">tryOperation</span>()
+    <span class="keyword">local</span> <span class="variable">ok</span>, <span class="variable">err</span> = <span class="function">pcall</span>(<span class="variable">dangerousFunc</span>)
+    <span class="keyword">return</span> <span class="variable">ok</span> <span class="keyword">and</span> <span class="variable">err</span> <span class="keyword">or</span> <span class="keyword">nil</span>
 <span class="keyword">end</span></pre>
                     </div>
                 </div>
             </div>
 
-            <h3>State Machine</h3>
+            <h3>Performance Profiling</h3>
             <div class="code-block">
-                <pre><span class="keyword">local</span> <span class="variable">StateMachine</span> = {}
-<span class="variable">StateMachine</span>.<span class="variable">__index</span> = <span class="variable">StateMachine</span>
+                <pre><span class="comment">-- Time measurement</span>
+<span class="keyword">local</span> <span class="variable">start</span> = <span class="function">tick</span>()
+<span class="comment">-- Your code here</span>
+<span class="keyword">local</span> <span class="variable">elapsed</span> = <span class="function">tick</span>() - <span class="variable">start</span>
+<span class="function">print</span>(<span class="string">"Took:"</span>, <span class="variable">elapsed</span>, <span class="string">"seconds"</span>)
 
-<span class="keyword">function</span> <span class="variable">StateMachine</span>.<span class="keyword">new</span>(<span class="variable">initialState</span>)
-    <span class="keyword">return</span> <span class="function">setmetatable</span>({
-        <span class="variable">currentState</span> = <span class="variable">initialState</span>,
-        <span class="variable">states</span> = {},
-        <span class="variable">transitions</span> = {}
-    }, <span class="variable">StateMachine</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">StateMachine</span>:<span class="function">addState</span>(<span class="variable">name</span>, <span class="variable">enterFunc</span>, <span class="variable">updateFunc</span>, <span class="variable">exitFunc</span>)
-    <span class="variable">self</span>.<span class="variable">states</span>[<span class="variable">name</span>] = {
-        <span class="variable">enter</span> = <span class="variable">enterFunc</span>,
-        <span class="variable">update</span> = <span class="variable">updateFunc</span>,
-        <span class="variable">exit</span> = <span class="variable">exitFunc</span>
-    }
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">StateMachine</span>:<span class="function">transition</span>(<span class="variable">newState</span>)
-    <span class="keyword">local</span> <span class="variable">current</span> = <span class="variable">self</span>.<span class="variable">states</span>[<span class="variable">self</span>.<span class="variable">currentState</span>]
-    <span class="keyword">local</span> <span class="variable">next</span> = <span class="variable">self</span>.<span class="variable">states</span>[<span class="variable">newState</span>]
-    
-    <span class="keyword">if</span> <span class="variable">current</span> <span class="keyword">and</span> <span class="variable">current</span>.<span class="variable">exit</span> <span class="keyword">then</span>
-        <span class="variable">current</span>.<span class="variable">exit</span>()
-    <span class="keyword">end</span>
-    
-    <span class="variable">self</span>.<span class="variable">currentState</span> = <span class="variable">newState</span>
-    
-    <span class="keyword">if</span> <span class="variable">next</span> <span class="keyword">and</span> <span class="variable">next</span>.<span class="variable">enter</span> <span class="keyword">then</span>
-        <span class="variable">next</span>.<span class="variable">enter</span>()
-    <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">StateMachine</span>:<span class="function">update</span>(<span class="variable">dt</span>)
-    <span class="keyword">local</span> <span class="variable">current</span> = <span class="variable">self</span>.<span class="variable">states</span>[<span class="variable">self</span>.<span class="variable">currentState</span>]
-    <span class="keyword">if</span> <span class="variable">current</span> <span class="keyword">and</span> <span class="variable">current</span>.<span class="variable">update</span> <span class="keyword">then</span>
-        <span class="variable">current</span>.<span class="variable">update</span>(<span class="variable">dt</span>)
-    <span class="keyword">end</span>
-<span class="keyword">end</span></pre>
+<span class="comment">-- Memory usage</span>
+<span class="function">print</span>(<span class="string">"Memory:"</span>, <span class="function">collectgarbage</span>(<span class="string">"count"</span>), <span class="string">"KB"</span>)
+<span class="function">collectgarbage</span>(<span class="string">"collect"</span>) <span class="comment">-- Force garbage collection</span></pre>
             </div>
         </section>
 
@@ -991,57 +830,14 @@
             
             <div class="tip">
                 <strong>💡 Performance Tips:</strong>
-                <ul>
-                    <li>Use local variables whenever possible</li>
-                    <li>Cache function calls and properties</li>
-                    <li>Avoid creating objects in loops</li>
-                    <li>Use RunService for game loops</li>
-                    <li>Disconnect unused connections</li>
-                </ul>
+                • Use <code>local</code> variables • Cache function calls • Avoid creating objects in loops • Use RunService for game loops • Disconnect unused connections • Batch operations with <code>wait()</code>
             </div>
 
             <div class="grid">
                 <div class="card">
-                    <h4>Object Pooling</h4>
-                    <div class="code-block">
-                        <pre><span class="keyword">local</span> <span class="variable">ObjectPool</span> = {}
-<span class="variable">ObjectPool</span>.<span class="variable">__index</span> = <span class="variable">ObjectPool</span>
-
-<span class="keyword">function</span> <span class="variable">ObjectPool</span>.<span class="keyword">new</span>(<span class="variable">createFunc</span>, <span class="variable">resetFunc</span>)
-    <span class="keyword">return</span> <span class="function">setmetatable</span>({
-        <span class="variable">pool</span> = {},
-        <span class="variable">active</span> = {},
-        <span class="variable">createFunc</span> = <span class="variable">createFunc</span>,
-        <span class="variable">resetFunc</span> = <span class="variable">resetFunc</span>
-    }, <span class="variable">ObjectPool</span>)
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">ObjectPool</span>:<span class="function">get</span>()
-    <span class="keyword">local</span> <span class="variable">obj</span>
-    <span class="keyword">if</span> #<span class="variable">self</span>.<span class="variable">pool</span> > <span class="number">0</span> <span class="keyword">then</span>
-        <span class="variable">obj</span> = <span class="function">table</span>.<span class="function">remove</span>(<span class="variable">self</span>.<span class="variable">pool</span>)
-    <span class="keyword">else</span>
-        <span class="variable">obj</span> = <span class="variable">self</span>.<span class="variable">createFunc</span>()
-    <span class="keyword">end</span>
-    
-    <span class="variable">self</span>.<span class="variable">active</span>[<span class="variable">obj</span>] = <span class="keyword">true</span>
-    <span class="keyword">return</span> <span class="variable">obj</span>
-<span class="keyword">end</span>
-
-<span class="keyword">function</span> <span class="variable">ObjectPool</span>:<span class="function">return</span>(<span class="variable">obj</span>)
-    <span class="keyword">if</span> <span class="variable">self</span>.<span class="variable">active</span>[<span class="variable">obj</span>] <span class="keyword">then</span>
-        <span class="variable">self</span>.<span class="variable">resetFunc</span>(<span class="variable">obj</span>)
-        <span class="variable">self</span>.<span class="variable">active</span>[<span class="variable">obj</span>] = <span class="keyword">nil</span>
-        <span class="function">table</span>.<span class="function">insert</span>(<span class="variable">self</span>.<span class="variable">pool</span>, <span class="variable">obj</span>)
-    <span class="keyword">end</span>
-<span class="keyword">end</span></pre>
-                    </div>
-                </div>
-                
-                <div class="card">
                     <h4>Efficient Loops</h4>
-                    <div class="code-block">
-                        <pre><span class="comment">-- Cache table length</span>
+                    <div class="code-block compact">
+                        <pre><span class="comment">-- Cache length</span>
 <span class="keyword">local</span> <span class="variable">items</span> = <span class="variable">workspace</span>:<span class="function">GetChildren</span>()
 <span class="keyword">local</span> <span class="variable">count</span> = #<span class="variable">items</span>
 <span class="keyword">for</span> <span class="variable">i</span> = <span class="number">1</span>, <span class="variable">count</span> <span class="keyword">do</span>
@@ -1049,23 +845,33 @@
     <span class="comment">-- process item</span>
 <span class="keyword">end</span>
 
-<span class="comment">-- Use reverse loops for removal</span>
+<span class="comment">-- Reverse loop for removal</span>
 <span class="keyword">for</span> <span class="variable">i</span> = #<span class="variable">items</span>, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span>
-    <span class="keyword">if</span> <span class="variable">shouldRemove</span>(<span class="variable">items</span>[<span class="variable">i</span>]) <span class="keyword">then</span>
+    <span class="keyword">if</span> <span class="function">shouldRemove</span>(<span class="variable">items</span>[<span class="variable">i</span>]) <span class="keyword">then</span>
         <span class="function">table</span>.<span class="function">remove</span>(<span class="variable">items</span>, <span class="variable">i</span>)
     <span class="keyword">end</span>
+<span class="keyword">end</span></pre>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Object Pooling</h4>
+                    <div class="code-block compact">
+                        <pre><span class="keyword">local</span> <span class="variable">pool</span> = {}
+<span class="keyword">local</span> <span class="variable">active</span> = {}
+
+<span class="keyword">local function</span> <span class="function">getObject</span>()
+    <span class="keyword">local</span> <span class="variable">obj</span> = <span class="function">table</span>.<span class="function">remove</span>(<span class="variable">pool</span>)
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">obj</span> <span class="keyword">then</span>
+        <span class="variable">obj</span> = <span class="function">createNewObject</span>()
+    <span class="keyword">end</span>
+    <span class="variable">active</span>[<span class="variable">obj</span>] = <span class="keyword">true</span>
+    <span class="keyword">return</span> <span class="variable">obj</span>
 <span class="keyword">end</span>
 
-<span class="comment">-- Batch operations</span>
-<span class="keyword">local</span> <span class="variable">batchSize</span> = <span class="number">100</span>
-<span class="keyword">local</span> <span class="variable">processed</span> = <span class="number">0</span>
-<span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">item</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">largeArray</span>) <span class="keyword">do</span>
-    <span class="function">processItem</span>(<span class="variable">item</span>)
-    <span class="variable">processed</span> = <span class="variable">processed</span> + <span class="number">1</span>
-    
-    <span class="keyword">if</span> <span class="variable">processed</span> % <span class="variable">batchSize</span> == <span class="number">0</span> <span class="keyword">then</span>
-        <span class="function">wait</span>() <span class="comment">-- Yield to prevent timeout</span>
-    <span class="keyword">end</span>
+<span class="keyword">local function</span> <span class="function">returnObject</span>(<span class="variable">obj</span>)
+    <span class="variable">active</span>[<span class="variable">obj</span>] = <span class="keyword">nil</span>
+    <span class="function">table</span>.<span class="function">insert</span>(<span class="variable">pool</span>, <span class="variable">obj</span>)
 <span class="keyword">end</span></pre>
                     </div>
                 </div>
@@ -1073,49 +879,56 @@
 
             <h3>Memory Management</h3>
             <div class="code-block">
-                <pre><span class="comment">-- Weak references</span>
-<span class="keyword">local</span> <span class="variable">weakTable</span> = <span class="function">setmetatable</span>({}, {<span class="variable">__mode</span> = <span class="string">"v"</span>})
+                <pre><span class="comment">-- Weak references (auto-cleanup)</span>
+<span class="keyword">local</span> <span class="variable">cache</span> = <span class="function">setmetatable</span>({}, {<span class="variable">__mode</span> = <span class="string">"v"</span>}) <span class="comment">-- Values are weak</span>
 
-<span class="comment">-- Cleanup function</span>
+<span class="comment">-- Connection cleanup</span>
+<span class="keyword">local</span> <span class="variable">connections</span> = {}
 <span class="keyword">local function</span> <span class="function">cleanup</span>()
-    <span class="comment">-- Disconnect all connections</span>
-    <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">connection</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">connections</span>) <span class="keyword">do</span>
-        <span class="variable">connection</span>:<span class="function">Disconnect</span>()
+    <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">conn</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">connections</span>) <span class="keyword">do</span>
+        <span class="variable">conn</span>:<span class="function">Disconnect</span>()
     <span class="keyword">end</span>
     <span class="variable">connections</span> = {}
-    
-    <span class="comment">-- Clear references</span>
-    <span class="keyword">for</span> <span class="variable">key</span> <span class="keyword">in</span> <span class="function">pairs</span>(<span class="variable">cache</span>) <span class="keyword">do</span>
-        <span class="variable">cache</span>[<span class="variable">key</span>] = <span class="keyword">nil</span>
-    <span class="keyword">end</span>
-    
-    <span class="comment">-- Force garbage collection</span>
-    <span class="function">collectgarbage</span>(<span class="string">"collect"</span>)
 <span class="keyword">end</span>
 
 <span class="comment">-- Debounce function</span>
 <span class="keyword">local function</span> <span class="function">debounce</span>(<span class="variable">func</span>, <span class="variable">delay</span>)
-    <span class="keyword">local</span> <span class="variable">timer</span> = <span class="keyword">nil</span>
+    <span class="keyword">local</span> <span class="variable">lastCall</span> = <span class="number">0</span>
     <span class="keyword">return</span> <span class="keyword">function</span>(...)
-        <span class="keyword">local</span> <span class="variable">args</span> = {...}
-        <span class="keyword">if</span> <span class="variable">timer</span> <span class="keyword">then</span>
-            <span class="variable">timer</span>:<span class="function">Disconnect</span>()
+        <span class="keyword">local</span> <span class="variable">now</span> = <span class="function">tick</span>()
+        <span class="keyword">if</span> <span class="variable">now</span> - <span class="variable">lastCall</span> >= <span class="variable">delay</span> <span class="keyword">then</span>
+            <span class="variable">lastCall</span> = <span class="variable">now</span>
+            <span class="keyword">return</span> <span class="variable">func</span>(...)
         <span class="keyword">end</span>
-        <span class="variable">timer</span> = <span class="function">wait</span>(<span class="variable">delay</span>)
-        <span class="variable">func</span>(<span class="function">unpack</span>(<span class="variable">args</span>))
     <span class="keyword">end</span>
 <span class="keyword">end</span></pre>
             </div>
         </section>
 
+        <div class="info">
+            <strong>🎯 Quick Reference Cheat Codes:</strong><br>
+            <code>game.Players.LocalPlayer</code> • <code>workspace:GetChildren()</code> • <code>Instance.new("Part")</code> • <code>Vector3.new(x,y,z)</code> • <code>CFrame.new(x,y,z)</code> • <code>wait(seconds)</code> • <code>spawn(function)</code> • <code>game:GetService("ServiceName")</code>
+        </div>
+
         <div class="tip">
-            <strong>🎯 Quick Reference:</strong> This cheatsheet covers the essential Roblox Lua concepts. For more detailed documentation, visit the official Roblox Developer Hub.
+            <strong>🚀 Pro Tips:</strong> Always use <code>local</code> variables for better performance • Use <code>:WaitForChild()</code> for reliability • Implement proper error handling with <code>pcall()</code> • Clean up connections when done • Use <code>CollectionService</code> for tagging systems • Cache frequently used services and objects
         </div>
     </div>
 
     <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
     <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
         // Show/hide scroll to top button
         window.addEventListener('scroll', function() {
             const button = document.querySelector('.scroll-top');
@@ -1124,3 +937,43 @@
             } else {
                 button.classList.remove('visible');
             }
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'rgba(102, 126, 234, 0.5)';
+            });
+            block.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+            });
+        });
+
+        // Add click-to-copy functionality for code blocks
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.style.cursor = 'pointer';
+            block.title = 'Click to copy code';
+            block.addEventListener('click', function() {
+                const code = this.querySelector('pre').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalBg = this.style.backgroundColor;
+                    this.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                    setTimeout(() => {
+                        this.style.backgroundColor = originalBg;
+                    }, 200);
+                });
+            });
+        });
+
+        console.log('🚀 Roblox Lua Cheatsheet loaded! Click any code block to copy it.');
+    </script>
+</body>
+</html>Heartbeat</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>)
+    <span class="comment">-- Runs every frame (server & client)</span>
+<span class="keyword">end</span>)
+
+<span class="variable">RunService</span>.<span class="variable">RenderStepped</span>:<span class="function">Connect</span>(<span class="keyword">function</span>(<span class="variable">dt</span>)
+    <span class="comment">-- Runs before rendering (client only)</span>
+<span class="keyword">end</span>)
+
+<span class="variable">RunService</span>.<span class="variable
